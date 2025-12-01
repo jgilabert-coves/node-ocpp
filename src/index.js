@@ -51,9 +51,10 @@ app.post("/broadcast", async (req, res) => {
   res.json({ sent: results.length, results });
 });
 
-const PORT_HTTP = 3000;
+const PORT_HTTP = process.env.PORT || 6000;
+const HOST = process.env.HOST || '0.0.0.0';
 
-server.listen(PORT_HTTP, () => {
-  console.log(`HTTP admin en http://localhost:${PORT_HTTP}`);
-  console.log(`WebSocket (OCPP) escuchando en ws://localhost:${PORT_HTTP}`);
+server.listen(PORT_HTTP, HOST, () => {
+  console.log(`HTTP admin en http://${HOST}:${PORT_HTTP}`);
+  console.log(`WebSocket (OCPP) escuchando en ws://${HOST}:${PORT_HTTP}`);
 });
